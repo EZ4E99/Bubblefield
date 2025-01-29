@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw5gbdrvk473t"]
+
+[ext_resource type="Script" path="res://scripts/drop.cs" id="1_goo0g"]
+[ext_resource type="Texture2D" uid="uid://wmgdro8gahau" path="res://assets/textures/bubbles/drop.png" id="2_bvjdv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2jdx5"]
+radius = 1.5
+height = 5.99989
+
+[node name="drop" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 7
+mass = 0.001
+gravity_scale = 0.0
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp = 1.0
+script = ExtResource("1_goo0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5.47225e-05, -0.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2jdx5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 3.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bvjdv")
+flip_h = true

@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=3 uid="uid://tomue1ytmi7d"]
+
+[ext_resource type="Script" path="res://scripts/bubble.cs" id="1_i20ei"]
+[ext_resource type="Texture2D" uid="uid://ddyajxdvpaw0t" path="res://assets/textures/bubbles/player_bubble.png" id="2_00x28"]
+[ext_resource type="AudioStream" uid="uid://dovqvt4v4r5i" path="res://assets/sounds/pick-92276~1.mp3" id="3_uk0ec"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_atwgm"]
+rough = true
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1svj8"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6wi6"]
+atlas = ExtResource("2_00x28")
+region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp02i"]
+atlas = ExtResource("2_00x28")
+region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue0rj"]
+atlas = ExtResource("2_00x28")
+region = Rect2(13, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2gic"]
+atlas = ExtResource("2_00x28")
+region = Rect2(26, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qavw"]
+atlas = ExtResource("2_00x28")
+region = Rect2(39, 0, 13, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_olj3w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6wi6")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp02i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue0rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2gic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qavw")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"pop",
+"speed": 20.0
+}]
+
+[node name="Bubble_Player" type="RigidBody2D"]
+process_mode = 3
+collision_layer = 4
+collision_mask = 15
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_atwgm")
+gravity_scale = 0.0
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 5
+linear_damp_mode = 1
+linear_damp = 1.0
+script = ExtResource("1_i20ei")
+isPlayerBubble = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1svj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
+position = Vector2(1.07288e-06, 1.07288e-06)
+sprite_frames = SubResource("SpriteFrames_olj3w")
+animation = &"pop"
+autoplay = "idle"
+
+[node name="PopSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_uk0ec")
+volume_db = 1.0
+pitch_scale = 1.5
+max_polyphony = 5

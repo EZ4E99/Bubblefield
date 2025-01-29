@@ -1,0 +1,319 @@
+[gd_scene load_steps=24 format=3 uid="uid://bstx36qk8p47m"]
+
+[ext_resource type="Script" path="res://scripts/player.cs" id="1_srcm4"]
+[ext_resource type="Texture2D" uid="uid://btof0xhxgoxqk" path="res://assets/textures/characters/arrow.png" id="2_yrytw"]
+[ext_resource type="Texture2D" uid="uid://c0suq4qukhjyq" path="res://assets/textures/characters/arrow_shopkeeper.png" id="3_2sjgo"]
+[ext_resource type="AudioStream" uid="uid://bai6cr5mapol1" path="res://assets/sounds/bubbles-108320.mp3" id="3_7dugy"]
+[ext_resource type="Texture2D" uid="uid://6dgwix6rbuv7" path="res://assets/textures/characters/bubble_guy.png" id="3_rtcmw"]
+[ext_resource type="Texture2D" uid="uid://ddjqofw3f2uhx" path="res://assets/textures/interface/hud.png" id="5_qkjsj"]
+[ext_resource type="PackedScene" uid="uid://56dp78qxjbln" path="res://scenes/menu.tscn" id="6_gfqy3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fotbr"]
+radius = 13.0
+
+[sub_resource type="Gradient" id="Gradient_yoxsk"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ynivi"]
+gradient = SubResource("Gradient_yoxsk")
+width = 32
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksr8n"]
+atlas = ExtResource("3_rtcmw")
+region = Rect2(0, 0, 15, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm3se"]
+atlas = ExtResource("3_rtcmw")
+region = Rect2(18, 0, 15, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yu081"]
+atlas = ExtResource("3_rtcmw")
+region = Rect2(0, 0, 15, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcawy"]
+atlas = ExtResource("3_rtcmw")
+region = Rect2(36, 0, 15, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f73oc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksr8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm3se")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yu081")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcawy")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1kch0"]
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 15.0
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Gradient" id="Gradient_w5y0j"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0.862745, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gb31s"]
+gradient = SubResource("Gradient_w5y0j")
+width = 2
+height = 4
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sbe83"]
+bg_color = Color(0, 0, 0, 0.627451)
+skew = Vector2(0, 0.1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5ddv"]
+font_size = 70
+shadow_size = 5
+shadow_color = Color(0, 0.6, 1, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="Animation" id="Animation_12lqg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 285)]
+}
+
+[sub_resource type="Animation" id="Animation_647oj"]
+resource_name = "intro"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.5, 0.666667, 0.8, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -285), Vector2(0, 285), Vector2(0, 85), Vector2(0, 285), Vector2(0, 200), Vector2(0, 285), Vector2(0, 285)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../GameOverLabel:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 0.433333, 0.666667, 0.833333, 0.966667, 1.1, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(465, -325), Vector2(465, 325), Vector2(465, 85), Vector2(465, 325), Vector2(465, 200), Vector2(465, 325), Vector2(465, 325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ultfx"]
+_data = {
+"RESET": SubResource("Animation_12lqg"),
+"intro": SubResource("Animation_647oj")
+}
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+process_mode = 3
+collision_layer = 2
+collision_mask = 63
+motion_mode = 1
+script = ExtResource("1_srcm4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_fotbr")
+
+[node name="Arrow" type="TextureRect" parent="."]
+self_modulate = Color(0, 0.6, 1, 1)
+texture_filter = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("2_yrytw")
+
+[node name="ArrowShopkeeper" type="TextureRect" parent="."]
+visible = false
+texture_filter = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("3_2sjgo")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 5
+position = Vector2(0, 19)
+texture = SubResource("GradientTexture2D_ynivi")
+
+[node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
+position = Vector2(0, -6)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_f73oc")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.542345
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 32
+amount_ratio = 0.0
+process_material = SubResource("ParticleProcessMaterial_1kch0")
+texture = SubResource("GradientTexture2D_gb31s")
+lifetime = 0.8
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameoverScreen" type="Control" parent="CanvasLayer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver" type="Panel" parent="CanvasLayer/HUD/GameoverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -75.0
+offset_right = 640.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sbe83")
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer/HUD/GameoverScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -175.0
+offset_top = -685.0
+offset_right = 175.0
+offset_bottom = -615.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "游戏结束！"
+label_settings = SubResource("LabelSettings_j5ddv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HUD/GameoverScreen"]
+root_node = NodePath("../GameOver")
+libraries = {
+"": SubResource("AnimationLibrary_ultfx")
+}
+
+[node name="HUDBackground" type="TextureRect" parent="CanvasLayer/HUD"]
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -138.0
+offset_right = 75.0
+offset_bottom = -10.0
+grow_vertical = 0
+texture = ExtResource("5_qkjsj")
+
+[node name="AngerBar" type="ColorRect" parent="CanvasLayer/HUD/HUDBackground"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 106.0
+offset_right = 22.0
+offset_bottom = 210.0
+rotation = 3.14159
+color = Color(0.921569, 0.286275, 0.203922, 1)
+
+[node name="WetBar" type="ColorRect" parent="CanvasLayer/HUD/HUDBackground"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 106.0
+offset_right = 46.0
+offset_bottom = 210.0
+rotation = 3.14159
+color = Color(0, 0.6, 1, 1)
+
+[node name="BubbleBar" type="ColorRect" parent="CanvasLayer/HUD/HUDBackground"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 106.0
+offset_right = 70.0
+offset_bottom = 210.0
+rotation = 3.14159
+color = Color(0.662745, 0.929412, 0.94902, 1)
+
+[node name="Menu" parent="CanvasLayer" instance=ExtResource("6_gfqy3")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="FireSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7dugy")

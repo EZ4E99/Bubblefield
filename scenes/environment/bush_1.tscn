@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7ur1wkefs831"]
+
+[ext_resource type="Script" path="res://scripts/environment_meshinstance2d.cs" id="1_n5i04"]
+[ext_resource type="Texture2D" uid="uid://b8qjete3kgas2" path="res://assets/textures/environment/bush_1.png" id="2_3m1km"]
+
+[sub_resource type="Gradient" id="Gradient_ykvx6"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6xnb"]
+gradient = SubResource("Gradient_ykvx6")
+width = 48
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Bush" type="MeshInstance2D"]
+script = ExtResource("1_n5i04")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 5
+position = Vector2(0, 17)
+texture = SubResource("GradientTexture2D_n6xnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 5
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_3m1km")

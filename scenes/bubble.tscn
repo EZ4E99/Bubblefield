@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://cswwca15pvcdy"]
+
+[ext_resource type="Script" path="res://scripts/bubble.cs" id="1_uncrj"]
+[ext_resource type="Texture2D" uid="uid://dcbasq05oeipg" path="res://assets/textures/bubbles/bubble.png" id="2_ajdpb"]
+[ext_resource type="AudioStream" uid="uid://dovqvt4v4r5i" path="res://assets/sounds/pick-92276~1.mp3" id="3_emygx"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_atwgm"]
+rough = true
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1svj8"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rktj6"]
+atlas = ExtResource("2_ajdpb")
+region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57vxs"]
+atlas = ExtResource("2_ajdpb")
+region = Rect2(0, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sxue"]
+atlas = ExtResource("2_ajdpb")
+region = Rect2(13, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hxng"]
+atlas = ExtResource("2_ajdpb")
+region = Rect2(26, 0, 13, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykb1u"]
+atlas = ExtResource("2_ajdpb")
+region = Rect2(39, 0, 13, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q6eqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rktj6")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57vxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sxue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hxng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykb1u")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"pop",
+"speed": 20.0
+}]
+
+[node name="Bubble" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 15
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_atwgm")
+gravity_scale = 0.0
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 5
+linear_damp_mode = 1
+linear_damp = 1.0
+script = ExtResource("1_uncrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1svj8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
+position = Vector2(1.07288e-06, 1.07288e-06)
+sprite_frames = SubResource("SpriteFrames_q6eqb")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="PopSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_emygx")
+volume_db = 1.0
+pitch_scale = 1.5
+max_polyphony = 5

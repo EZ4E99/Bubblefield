@@ -1,0 +1,159 @@
+[gd_scene load_steps=21 format=3 uid="uid://bf522two424gc"]
+
+[ext_resource type="Script" path="res://scripts/shopkeeper.cs" id="1_tn2w3"]
+[ext_resource type="Texture2D" uid="uid://t445r2hval1m" path="res://assets/textures/characters/shopkeeper.png" id="2_rxpjf"]
+[ext_resource type="Texture2D" uid="uid://3dmecpvcj08l" path="res://assets/textures/characters/dollar.png" id="3_p7jby"]
+[ext_resource type="AudioStream" uid="uid://b7qmlxikeql88" path="res://assets/sounds/kaching.ogg" id="4_1ei77"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m8i8t"]
+radius = 70.0
+
+[sub_resource type="Gradient" id="Gradient_nuql6"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x2v21"]
+gradient = SubResource("Gradient_nuql6")
+width = 48
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i665x"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(0, 0, 54, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vxad"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(58, 0, 54, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn0r7"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(0, 34, 54, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4gtx"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(58, 34, 54, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6r7j"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(0, 68, 54, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w54e6"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(58, 68, 54, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r053r"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(0, 102, 53, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rbkmu"]
+atlas = ExtResource("2_rxpjf")
+region = Rect2(57, 102, 53, 34)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5sqfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i665x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vxad")
+}],
+"loop": true,
+"name": &"level1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn0r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4gtx")
+}],
+"loop": true,
+"name": &"level2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6r7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w54e6")
+}],
+"loop": true,
+"name": &"level3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r053r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rbkmu")
+}],
+"loop": true,
+"name": &"level4",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8qygu"]
+size = Vector2(48, 24)
+
+[sub_resource type="Curve" id="Curve_x7fqq"]
+_data = [Vector2(0.753333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.010989), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wbc7i"]
+curve = SubResource("Curve_x7fqq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bowlv"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 25.45
+gravity = Vector3(0, -98, 0)
+scale_curve = SubResource("CurveTexture_wbc7i")
+
+[node name="Shopkeeper" type="StaticBody2D" groups=["shopkeeper"]]
+collision_mask = 3
+script = ExtResource("1_tn2w3")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_m8i8t")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 5
+position = Vector2(0, 16)
+texture = SubResource("GradientTexture2D_x2v21")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 5
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_5sqfw")
+animation = &"level1"
+autoplay = "level1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8qygu")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 5
+position = Vector2(-1, -26)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_bowlv")
+texture = ExtResource("3_p7jby")
+lifetime = 0.75
+one_shot = true
+
+[node name="CashierSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1ei77")
+
+[node name="Timer" type="Timer" parent="."]

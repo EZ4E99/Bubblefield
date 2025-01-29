@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://fnrml6tydeg4"]
+
+[ext_resource type="Script" path="res://scripts/environment_meshinstance2d.cs" id="1_3vtrq"]
+[ext_resource type="Texture2D" uid="uid://b8v15kmlfk816" path="res://assets/textures/environment/barricade.png" id="2_tu0x3"]
+
+[sub_resource type="Gradient" id="Gradient_ykvx6"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0.196078, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6xnb"]
+gradient = SubResource("Gradient_ykvx6")
+width = 32
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n56ao"]
+size = Vector2(12, 12)
+
+[node name="Barricade" type="MeshInstance2D"]
+script = ExtResource("1_3vtrq")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture_filter = 5
+position = Vector2(0, 14)
+texture = SubResource("GradientTexture2D_n6xnb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 5
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_tu0x3")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_n56ao")

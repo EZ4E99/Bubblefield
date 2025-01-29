@@ -1,0 +1,317 @@
+[gd_scene load_steps=15 format=3 uid="uid://dq73cuam4uweo"]
+
+[ext_resource type="Texture2D" uid="uid://c1sfbsgtqgnhs" path="res://assets/textures/interface/ending/ending_bug.png" id="1_o5c1m"]
+[ext_resource type="AudioStream" uid="uid://b4vqxqw83tjup" path="res://assets/sounds/BGM1.wav" id="2_3u5bg"]
+[ext_resource type="Script" path="res://scripts/ending.cs" id="2_picqr"]
+[ext_resource type="Texture2D" uid="uid://b0rxg67g6sutw" path="res://assets/textures/interface/ui_bubble.png" id="3_cpkrk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lcgyd"]
+font_size = 70
+shadow_size = 5
+shadow_color = Color(0, 0.312564, 0.537033, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="Animation" id="Animation_vc05s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button/Sprite2D:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Button:self_modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ktibo"]
+resource_name = "intro"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button/Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_odukh"]
+resource_name = "menu"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.98023e-08, 0.0666667, 0.133333, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.333333, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fcjr"]
+_data = {
+"RESET": SubResource("Animation_vc05s"),
+"intro": SubResource("Animation_ktibo"),
+"menu": SubResource("Animation_odukh")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n5u88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqco0"]
+bg_color = Color(0, 0.6, 1, 0.470588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.705376, 0.941472, 1, 1)
+corner_radius_top_left = 49
+corner_radius_top_right = 49
+corner_radius_bottom_right = 49
+corner_radius_bottom_left = 49
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5bk1"]
+bg_color = Color(1, 1, 1, 0.235294)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.705376, 0.941472, 1, 1)
+corner_radius_top_left = 49
+corner_radius_top_right = 49
+corner_radius_bottom_right = 49
+corner_radius_bottom_left = 49
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7dyqs"]
+
+[sub_resource type="Theme" id="Theme_tvo6m"]
+Button/colors/font_color = Color(0.470588, 1, 1, 1)
+Button/font_sizes/font_size = 25
+Button/styles/focus = SubResource("StyleBoxEmpty_n5u88")
+Button/styles/hover = SubResource("StyleBoxFlat_xqco0")
+Button/styles/normal = SubResource("StyleBoxFlat_w5bk1")
+Button/styles/pressed = SubResource("StyleBoxEmpty_7dyqs")
+
+[node name="BugEnding" type="TextureRect"]
+process_mode = 3
+texture_filter = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_o5c1m")
+script = ExtResource("2_picqr")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -330.0
+offset_top = 200.0
+offset_right = -50.0
+offset_bottom = 270.0
+grow_horizontal = 0
+text = "灭虫专家！
+
+结局 4/4"
+label_settings = SubResource("LabelSettings_lcgyd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3u5bg")
+autoplay = true
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0fcjr")
+}
+autoplay = "intro"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+texture_filter = 5
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -120.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_tvo6m")
+text = "主菜单"
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+visible = false
+position = Vector2(50, 50)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("3_cpkrk")
+hframes = 4

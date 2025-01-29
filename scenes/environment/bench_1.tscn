@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://gciivhkit11y"]
+
+[ext_resource type="Script" path="res://scripts/environment_meshinstance2d.cs" id="1_ndtqw"]
+[ext_resource type="Texture2D" uid="uid://dhaelxb0rwjgm" path="res://assets/textures/environment/bench_1.png" id="2_qeggh"]
+
+[sub_resource type="Gradient" id="Gradient_eqdvn"]
+offsets = PackedFloat32Array(0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0.156863, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0iiau"]
+gradient = SubResource("Gradient_eqdvn")
+height = 12
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n87o8"]
+size = Vector2(52, 14.5)
+
+[node name="Bench_1" type="MeshInstance2D"]
+script = ExtResource("1_ndtqw")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 11)
+texture = SubResource("GradientTexture2D_0iiau")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 5
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_qeggh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 7.75)
+shape = SubResource("RectangleShape2D_n87o8")
